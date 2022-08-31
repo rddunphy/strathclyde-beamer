@@ -1,0 +1,50 @@
+\mode<presentation>
+
+\DeclareOptionBeamer{eng}{
+	\PassOptionsToPackage{eng}{beamercolorthemestrath}
+	\PassOptionsToPackage{eng}{beamerinnerthemestrath}
+	\PassOptionsToPackage{eng}{beamerouterthemestrath}
+}
+\DeclareOptionBeamer{sci}{
+	\PassOptionsToPackage{sci}{beamercolorthemestrath}
+	\PassOptionsToPackage{sci}{beamerinnerthemestrath}
+	\PassOptionsToPackage{sci}{beamerouterthemestrath}
+}
+\DeclareOptionBeamer{hass}{
+	\PassOptionsToPackage{hass}{beamercolorthemestrath}
+	\PassOptionsToPackage{hass}{beamerinnerthemestrath}
+	\PassOptionsToPackage{hass}{beamerouterthemestrath}
+}
+\DeclareOptionBeamer{sbs}{
+	\PassOptionsToPackage{sbs}{beamercolorthemestrath}
+	\PassOptionsToPackage{sbs}{beamerinnerthemestrath}
+	\PassOptionsToPackage{sbs}{beamerouterthemestrath}
+}
+\ProcessOptionsBeamer
+
+\RequirePackage{tikz}
+\RequirePackage{xargs}
+\RequirePackage{etoolbox}
+\usetikzlibrary{positioning,calc}
+\RequirePackage{graphicx}
+\RequirePackage[sfdefault]{noto}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{rotating}
+\RequirePackage[immediate]{silence}
+\WarningFilter[strathdependencies]{everypage}{Functionality similar to this}
+\WarningFilter[strathdependencies]{everypage}{You appear to be running}
+\WarningFilter[strathdependencies]{microtype}{Unable to apply patch}
+\RequirePackage{background}
+\RequirePackage{adjustbox}
+\RequirePackage[letterspace=250]{microtype}
+
+\useinnertheme{strath}
+\useoutertheme{strath}
+\usecolortheme{strath}
+\usefonttheme{strath}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]  
+
+\mode<all>

@@ -1,0 +1,99 @@
+\mode<presentation>
+
+\newcommand{\strathbg}{img/strath_corp.png}
+\newcommand{\strathlogo}{img/strath_corp_logo.png}
+\newcommand{\strathblock}{img/strath_corp_block.png}
+\newcommand{\strathexampleblock}{img/strath_corp_exampleblock.png}
+\newcommand{\strathalertblock}{img/strath_corp_alertblock.png}
+\DeclareOptionBeamer{eng}{
+	\renewcommand{\strathbg}{img/strath_eng.png}
+	\renewcommand{\strathlogo}{img/strath_eng_logo.png}
+	\renewcommand{\strathblock}{img/strath_eng_block.png}
+	\renewcommand{\strathexampleblock}{img/strath_eng_exampleblock.png}
+	\renewcommand{\strathalertblock}{img/strath_eng_alertblock.png}
+}
+\DeclareOptionBeamer{sci}{
+	\renewcommand{\strathbg}{img/strath_sci.png}
+	\renewcommand{\strathlogo}{img/strath_sci_logo.png}
+	\renewcommand{\strathblock}{img/strath_sci_block.png}
+	\renewcommand{\strathexampleblock}{img/strath_sci_exampleblock.png}
+	\renewcommand{\strathalertblock}{img/strath_sci_alertblock.png}
+}
+\DeclareOptionBeamer{hass}{
+	\renewcommand{\strathbg}{img/strath_hass.png}
+	\renewcommand{\strathlogo}{img/strath_hass_logo.png}
+	\renewcommand{\strathblock}{img/strath_hass_block.png}
+	\renewcommand{\strathexampleblock}{img/strath_hass_exampleblock.png}
+	\renewcommand{\strathalertblock}{img/strath_hass_alertblock.png}
+}
+\DeclareOptionBeamer{sbs}{
+	\renewcommand{\strathbg}{img/strath_sbs.png}
+	\renewcommand{\strathlogo}{img/strath_sbs_logo.png}
+	\renewcommand{\strathblock}{img/strath_sbs_block.png}
+	\renewcommand{\strathexampleblock}{img/strath_sbs_exampleblock.png}
+	\renewcommand{\strathalertblock}{img/strath_sbs_alertblock.png}
+}
+\ProcessOptionsBeamer
+
+% Title page
+\defbeamertemplate*{title page}{strath}[1][]
+{ 
+	\setbeamertemplate{footline}{}
+	\begin{tikzpicture}[overlay, remember picture]
+		\node[inner sep=0pt,outer sep=0pt,anchor=north east] at (current page.north east)
+		{\adjincludegraphics[max size={\paperwidth}{\paperheight},min size={\paperwidth}{\paperheight}]{\strathbg}};
+	\end{tikzpicture}
+	
+	\begin{tikzpicture}[overlay, remember picture]
+		\node[inner sep=0pt,outer sep=30pt,anchor=north east] at (current page.north east)
+			{\includegraphics[width=0.25\paperwidth,height=0.25\paperheight,keepaspectratio]{\strathlogo}};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}[overlay, remember picture]
+		\node[inner sep=0pt, outer sep=0.53cm, anchor=north west] at (current page.north west){
+			\begin{turn}{-90}\textcolor{white}{\tiny{}\textls{X\quad{}THE PLACE OF USEFUL LEARNING}}\end{turn}};
+		\node[inner sep=0pt,outer sep=0pt,anchor=north west] at (current page.north west){
+			\hspace*{1.2cm}\textcolor{white}{\rule{0.5pt}{\paperheight}}};
+\end{tikzpicture}
+
+	\vskip2.5cm%
+	%% "title page header"  defines the loaded colors.
+	\begin{beamercolorbox}[wd=0.8\paperwidth,leftskip=0.5cm,#1]{title page header}
+		\usebeamerfont{title}\MakeUppercase\inserttitle\par%
+	\end{beamercolorbox}%
+	\vskip0.75cm%
+	\begin{beamercolorbox}[wd=0.6\paperwidth,leftskip=0.5cm,#1]{author}
+		\usebeamerfont{author}\textcolor{white}{\insertauthor}%
+	\end{beamercolorbox}
+	\vskip0.2cm%
+	\begin{beamercolorbox}[wd=0.6\paperwidth,leftskip=0.5cm,#1]{date}
+		\usebeamerfont{author}\textcolor{white}{\insertdate}%
+	\end{beamercolorbox}
+	\vfill
+}
+
+\renewenvironment{block}[1]{\begin{tcolorbox}[enhanced,frame style tile={width=\paperwidth}{\strathblock},toptitle=2pt,title=#1]}{\end{tcolorbox}}
+\renewenvironment{exampleblock}[1]{\begin{tcolorbox}[enhanced,frame style tile={width=\paperwidth}{\strathexampleblock},toptitle=2pt,title=#1]}{\end{tcolorbox}}
+\renewenvironment{alertblock}[1]{\begin{tcolorbox}[enhanced,frame style tile={width=\paperwidth}{\strathalertblock},toptitle=2pt,title=#1]}{\end{tcolorbox}}
+
+\newcommandx{\fillgraphics}[4][1=1,2=0,3=0.094683\paperwidth]{
+% \relax
+	\@ifundefined{fillgraphicsmaxwidth}{
+		\newlength{\fillgraphicsmaxwidth}
+	}{}
+	\setlength{\fillgraphicsmaxwidth}{\dimexpr\paperwidth-1.2cm-0.5pt}
+	\@ifundefined{fillgraphicsxspace}{
+		\newlength{\fillgraphicsxspace}
+	}{}
+	\setlength{\fillgraphicsxspace}{\dimexpr\fillgraphicsmaxwidth-#1\fillgraphicsmaxwidth}
+	\@ifundefined{fillgraphicsxoffset}{
+		\newlength{\fillgraphicsxoffset}
+	}{}
+	\setlength{\fillgraphicsxoffset}{\dimexpr#2\fillgraphicsxspace-\fillgraphicsxspace}
+	\begin{tikzpicture}[overlay, remember picture]
+		\node[xshift=\fillgraphicsxoffset, inner sep=0pt,outer sep=0pt,anchor=south east] at (current page.south east)
+		{\adjincludegraphics[max size={#1\fillgraphicsmaxwidth}{\paperheight-#3},min size={#1\fillgraphicsmaxwidth}{\paperheight-#3},Clip={(\width-#1\fillgraphicsmaxwidth)/2} 0 {(\width-#1\fillgraphicsmaxwidth)/2} 0]{#4}};
+	\end{tikzpicture}
+}
+
+\mode<all>

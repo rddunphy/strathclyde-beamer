@@ -1,0 +1,106 @@
+\mode<presentation>
+
+\newcommand{\strathtitlebg}{img/strath_corp_frame_title.png}
+\newcommand{\framesidebartext}{X\quad{}THE UNIVERSITY OF STRATHCLYDE}
+\DeclareOptionBeamer{eng}{
+	\renewcommand{\strathtitlebg}{img/strath_eng_frame_title.png}
+    \renewcommand{\framesidebartext}{X\quad{}THE FACULTY OF ENGINEERING}
+}
+\DeclareOptionBeamer{sci}{
+	\renewcommand{\strathtitlebg}{img/strath_sci_frame_title.png}
+    \renewcommand{\framesidebartext}{X\quad{}THE FACULTY OF SCIENCE}
+}
+\DeclareOptionBeamer{hass}{
+	\renewcommand{\strathtitlebg}{img/strath_hass_frame_title.png}
+    \renewcommand{\framesidebartext}{X\quad{}FACULTY OF HUMANITIES \& SOCIAL SCIENCES}
+}
+\DeclareOptionBeamer{sbs}{
+	\renewcommand{\strathtitlebg}{img/strath_sbs_frame_title.png}
+    \renewcommand{\framesidebartext}{X\quad{}STRATHCLYDE BUSINESS SCHOOL}
+}
+\ProcessOptionsBeamer
+
+% Frame title
+\defbeamertemplate*{frametitle}{strath}[1][]
+{%
+  \begin{tikzpicture}[overlay, remember picture]
+\node[inner sep=0pt, outer sep=0cm, anchor=north east] at (current page.north east){
+    \adjincludegraphics[width=\paperwidth,keepaspectratio,Clip={1.2cm+0.5pt} 0 0 0]{\strathtitlebg}%
+  };
+\ifthenelse{\equal{\insertframesubtitle}{}}{
+    \node[yshift=-0.05cm, inner sep=0pt, outer sep=0.5cm, anchor=north west] at (current page.north west){
+    \usebeamercolor{frametitle}\color{fg}
+    \hskip1.2cm\insertframetitle};
+    }{
+    \node[yshift=0.2cm, inner sep=0pt, outer sep=0.5cm, anchor=north west] at (current page.north west){
+    \usebeamercolor{frametitle}\color{fg}
+    \hskip1.2cm\insertframetitle};
+  \node[yshift=-0.5cm, inner sep=0pt, outer sep=0.5cm, anchor=north west] at (current page.north west){
+    \usebeamercolor{framesubtitle}\color{fg}\normalsize
+    \hskip1.2cm\insertframesubtitle};
+}
+  \end{tikzpicture}
+  \vspace{1.2cm}
+}
+
+% Branding side bar
+\setbeamersize{sidebar width left=1.2cm}
+\defbeamertemplate*{sidebar left}{strath}{
+  \begin{tikzpicture}[overlay, remember picture]
+    \node[inner sep=0pt, outer sep=0.53cm, anchor=north west] at (current page.north west){
+      \begin{turn}{-90}\textcolor{strathprimary}{\tiny{}\textls{\framesidebartext}}\end{turn}};
+    \node[inner sep=0pt,outer sep=0pt,anchor=north west] at (current page.north west){
+      \hspace*{1.2cm}\textcolor{strathprimary}{\rule{0.5pt}{\paperheight}}};
+  \end{tikzpicture}
+}
+
+% Foot line
+\defbeamertemplate*{footline}{strath}{
+  \ifnum \insertpagenumber=1
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.75\paperwidth,ht=2.25ex,dp=1ex,left]{frame controls in title slide}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.25\paperwidth,ht=2.25ex,dp=1ex,right]{frame controls in title slide}%
+      \begin{minipage}[c]{3cm}
+      \textcolor{strathtint}{
+      \insertslidenavigationsymbol%
+      \insertframenavigationsymbol%
+      % \insertsubsectionnavigationsymbol%
+      \insertsectionnavigationsymbol%
+      % \insertdocnavigationsymbol%
+      \insertbackfindforwardnavigationsymbol}
+    \end{minipage}
+      \begin{minipage}[c]{7ex}
+      \insertframenumber{} / \inserttotalframenumber
+    \end{minipage}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+  \else%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.7\paperwidth,ht=2.25ex,dp=1ex,left]{title in foot}%
+      \hskip1.4cm
+      \insertshortauthor: \insertshorttitle{} (\insertshortdate)
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.25ex,dp=1ex,right]{frame controls}%
+      \begin{minipage}[c]{3cm}
+      \textcolor{strathtint}{
+      \insertslidenavigationsymbol%
+      \insertframenavigationsymbol%
+      % \insertsubsectionnavigationsymbol%
+      \insertsectionnavigationsymbol%
+      % \insertdocnavigationsymbol%
+      \insertbackfindforwardnavigationsymbol}
+    \end{minipage}
+      \begin{minipage}[c]{7ex}
+      \insertframenumber{} / \inserttotalframenumber
+    \end{minipage}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+  \fi
+}
+
+\newenvironment{nofootlineframe}{\begingroup\setbeamertemplate{footline}{}\begin{frame}}{\end{frame}\endgroup}
+
+\mode<all>
