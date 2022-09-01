@@ -112,40 +112,42 @@
 	\end{alertblock}
 \end{frame}
 
-\begin{nofootlineframe}
+\begin{frame}
 	\frametitle{\texttt{\textbackslash{}fillgraphics} command}
 	\fillgraphics[0.47]{strath.png}
 	\begin{columns}
 		\begin{column}{0.47\textwidth}
-			
 		\end{column}
 		\begin{column}{0.47\textwidth}
+			\begin{block}{}\scriptsize
+				\texttt{\textbackslash{}fillgraphics} is a helper command to insert an image in the background and make it fill a portion of the frame, stretching and clipping it to preserve the aspect ratio
+			\end{block}
 			\begin{block}{}\scriptsize
 				First option specifies width relative to viewport (defaults to 1 for full width)
 			\end{block}
 			\begin{exampleblock}{Code}\tiny
 				\texttt{\textbackslash{}fillgraphics[0.47]\{strath.png\}}
 			\end{exampleblock}
-			\begin{alertblock}{}\scriptsize
-				Use \texttt{\textbackslash{}begin\{nofootlineframe\}} instead of \texttt{\textbackslash{}begin\{frame\}} to remove footline
-			\end{alertblock}
 		\end{column}
 	\end{columns}
-\end{nofootlineframe}
+\end{frame}
 
 \begin{nofootlineframe}
 	\frametitle{\texttt{\textbackslash{}fillgraphics} command}
-	\fillgraphics[0.33][1]{strath.png}
+	\fillgraphics[0.25][1]{strath.png}
 	\begin{columns}
-		\begin{column}{0.64\textwidth}
+		\begin{column}{0.72\textwidth}
 			\begin{block}{}\scriptsize
 				Second option specifies horizontal position (defaults to 0 for left-aligned)
 			\end{block}
 			\begin{exampleblock}{Code}\scriptsize
-				\texttt{\textbackslash{}fillgraphics[0.33][1]\{strath.png\}}
+				\texttt{\textbackslash{}fillgraphics[0.25][1]\{strath.png\}}
 			\end{exampleblock}
+			\begin{alertblock}{}\scriptsize
+				Use \texttt{\textbackslash{}begin\{nofootlineframe\}} instead of \texttt{\textbackslash{}begin\{frame\}} to remove footline
+			\end{alertblock}
 		\end{column}
-		\begin{column}{0.33\textwidth}
+		\begin{column}{0.25\textwidth}
 		\end{column}
 	\end{columns}
 \end{nofootlineframe}
