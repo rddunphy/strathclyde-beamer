@@ -38,6 +38,29 @@
 \RequirePackage{background}
 \RequirePackage[export]{adjustbox}
 \RequirePackage[letterspace=250]{microtype}
+\RequirePackage{ifthen}
+
+\ifthenelse{\lengthtest{\beamer@paperwidth=16.00cm}\AND\lengthtest{\beamer@paperheight=10.00cm}}{
+	\def\beamer@aspectratio{1610}
+}{}
+\ifthenelse{\lengthtest{\beamer@paperwidth=16.00cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
+	\def\beamer@aspectratio{169}
+}{}
+\ifthenelse{\lengthtest{\beamer@paperwidth=14.00cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
+	\def\beamer@aspectratio{149}
+}{}
+\ifthenelse{\lengthtest{\beamer@paperwidth=12.50cm}\AND\lengthtest{\beamer@paperheight=10.00cm}}{
+	\def\beamer@aspectratio{54}
+}{}
+\ifthenelse{\lengthtest{\beamer@paperwidth=12.80cm}\AND\lengthtest{\beamer@paperheight=9.60cm}}{
+	\def\beamer@aspectratio{43}
+}{}
+\ifthenelse{\lengthtest{\beamer@paperwidth=13.50cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
+	\def\beamer@aspectratio{32}
+}{}
+\def\theratio{\beamer@aspectratio}
+
+\newcommand\ifratio[3]{\ifthenelse{\beamer@aspectratio=#1}{#2}{#3}}
 
 \usecolortheme{strath}
 \usefonttheme{strath}

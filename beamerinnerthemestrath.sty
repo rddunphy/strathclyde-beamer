@@ -54,9 +54,8 @@
 	\begin{tikzpicture}[overlay, remember picture]
 		\node[inner sep=0pt, outer sep=0.53cm, anchor=north west] at (current page.north west){
 			\begin{turn}{-90}\textcolor{white}{\tiny{}\textls{X\quad{}THE PLACE OF USEFUL LEARNING}}\end{turn}};
-		\node[inner sep=0pt,outer sep=0pt,anchor=north west] at (current page.north west){
-			\hspace*{1.2cm}\textcolor{white}{\rule{0.5pt}{\paperheight}}};
-\end{tikzpicture}
+		\node[inner sep=0pt,outer sep=0pt,anchor=north west] at (current page.north west){\hspace*{1.2cm}\textcolor{white}{\rule{0.5pt}{\paperheight}}};
+	\end{tikzpicture}
 
 	\vskip2.5cm%
 	%% "title page header"  defines the loaded colors.
@@ -67,7 +66,7 @@
 	\begin{beamercolorbox}[wd=0.6\paperwidth,leftskip=0.5cm,#1]{author}
 		\usebeamerfont{author}\textcolor{white}{\insertauthor}%
 	\end{beamercolorbox}
-	\vskip0.2cm%
+	\vskip0.4cm%
 	\begin{beamercolorbox}[wd=0.6\paperwidth,leftskip=0.5cm,#1]{date}
 		\usebeamerfont{author}\textcolor{white}{\insertdate}%
 	\end{beamercolorbox}
@@ -78,12 +77,27 @@
 \renewenvironment{exampleblock}[1]{\begin{tcolorbox}[enhanced,frame style tile={width=\paperwidth}{\strathexampleblock},toptitle=2pt,title=#1]}{\end{tcolorbox}}
 \renewenvironment{alertblock}[1]{\begin{tcolorbox}[enhanced,frame style tile={width=\paperwidth}{\strathalertblock},toptitle=2pt,title=#1]}{\end{tcolorbox}}
 
-\newcommandx{\fillgraphics}[4][1=1,2=0,3=0.094683\paperwidth]{
-% \relax
+\newcommandx{\fillgraphics}[4][1=1,2=0,3=-1pt]{
+	\@ifundefined{fillgraphicsheight}{
+		\newlength{\fillgraphicsheight}
+	}{}
+	\ifthenelse{\lengthtest{#3=-1pt}}{
+		\ifratio{43}{
+			\setlength{\fillgraphicsheight}{\dimexpr\paperheight-0.11362\paperwidth}
+		}{
+			\setlength{\fillgraphicsheight}{\dimexpr\paperheight-0.094683\paperwidth}
+		}
+	}{
+		\setlength{\fillgraphicsheight}{\dimexpr\paperheight-#3}
+	}
 	\@ifundefined{fillgraphicsmaxwidth}{
 		\newlength{\fillgraphicsmaxwidth}
 	}{}
-	\setlength{\fillgraphicsmaxwidth}{\dimexpr\paperwidth-1.2cm-0.5pt}
+	\ifratio{43}{
+		\setlength{\fillgraphicsmaxwidth}{\paperwidth}
+	}{
+		\setlength{\fillgraphicsmaxwidth}{\dimexpr\paperwidth-1.2cm-0.45pt}
+	}
 	\@ifundefined{fillgraphicsxspace}{
 		\newlength{\fillgraphicsxspace}
 	}{}
@@ -92,9 +106,10 @@
 		\newlength{\fillgraphicsxoffset}
 	}{}
 	\setlength{\fillgraphicsxoffset}{\dimexpr#2\fillgraphicsxspace-\fillgraphicsxspace}
+
 	\begin{tikzpicture}[overlay, remember picture]
 		\node[xshift=\fillgraphicsxoffset, inner sep=0pt,outer sep=0pt,anchor=south east] at (current page.south east)
-		{\adjincludegraphics[max size={#1\fillgraphicsmaxwidth}{\paperheight-#3},min size={#1\fillgraphicsmaxwidth}{\paperheight-#3},Clip={(\width-#1\fillgraphicsmaxwidth)/2} 0 {(\width-#1\fillgraphicsmaxwidth)/2} 0]{#4}};
+			{\adjincludegraphics[max size={#1\fillgraphicsmaxwidth}{\fillgraphicsheight},min size={#1\fillgraphicsmaxwidth}{\fillgraphicsheight},Clip={(\width-#1\fillgraphicsmaxwidth)/2} {(\height-\fillgraphicsheight)/2} {(\width-#1\fillgraphicsmaxwidth)/2} {(\height-\fillgraphicsheight)/2}]{#4}};
 	\end{tikzpicture}
 }
 

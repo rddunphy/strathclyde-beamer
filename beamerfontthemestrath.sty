@@ -7,6 +7,10 @@
 \setbeamerfont{bibliography entry title}{size=\footnotesize}
 \setbeamerfont{bibliography entry location}{size=\footnotesize}
 \setbeamerfont{bibliography entry note}{size=\footnotesize}
-\renewcommand*{\bibfont}{\footnotesize}
+\@ifundefined{bibfont}{
+	\relax
+}{
+	\renewcommand*{\bibfont}{\footnotesize}
+}
 
 \mode<all>
