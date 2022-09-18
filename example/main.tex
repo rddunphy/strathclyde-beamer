@@ -1,24 +1,25 @@
-\documentclass[aspectratio=1610]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usetheme{strath}
 
 \usepackage[UKenglish]{babel}
+\usepackage[nodayofweek]{datetime}
+\usepackage{listings}
 
 \graphicspath{{img/}}
 
 \title[Sample presentation]{Sample Beamer presentation}
 \author[Author]{Author Name}
 \institute{University of Strathclyde}
-\date[2/9/22]{2nd September 2022}
+\date[\dmyydate\today]{\longdate\today}
 
 \begin{document}
 
 \frame{\titlepage}
 
-\begin{frame}
-	\frametitle{Sample frame title}
-	For main/corporate theme, call \texttt{\textbackslash{}usetheme\{strath\}}
-	\vspace{1cm}
+\begin{frame}[fragile]{Sample frame title}
+	For main/corporate theme, call \verb|\usetheme{strath}|
+	\vspace{0.6cm}
 	\begin{columns}
 		\begin{column}{0.47\textwidth}
 			\begin{enumerate}
@@ -37,9 +38,7 @@
 	\end{columns}
 \end{frame}
 
-
-\begin{frame}
-	\frametitle{Engineering theme}
+\begin{frame}[fragile]{Engineering theme}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\tcbincludegraphics[width=\textwidth]{eng1.png}
@@ -48,13 +47,12 @@
 			\tcbincludegraphics[width=\textwidth]{eng2.png}
 		\end{column}
 	\end{columns}
-	\vspace{1cm}
+	\vspace{0.6cm}
 	\centering
-	\texttt{\textbackslash{}usetheme[eng]\{strath\}}
+	\verb|\usetheme[eng]{strath}|
 \end{frame}
 
-\begin{frame}
-	\frametitle{Science theme}
+\begin{frame}[fragile]{Science theme}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\tcbincludegraphics[width=\textwidth]{sci1.png}
@@ -63,13 +61,12 @@
 			\tcbincludegraphics[width=\textwidth]{sci2.png}
 		\end{column}
 	\end{columns}
-	\vspace{1cm}
+	\vspace{0.6cm}
 	\centering
-	\texttt{\textbackslash{}usetheme[sci]\{strath\}}
+	\verb|\usetheme[sci]{strath}|
 \end{frame}
 
-\begin{frame}
-	\frametitle{HaSS theme}
+\begin{frame}[fragile]{HaSS theme}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\tcbincludegraphics[width=\textwidth]{hass1.png}
@@ -78,13 +75,12 @@
 			\tcbincludegraphics[width=\textwidth]{hass2.png}
 		\end{column}
 	\end{columns}
-	\vspace{1cm}
+	\vspace{0.6cm}
 	\centering
-	\texttt{\textbackslash{}usetheme[hass]\{strath\}}
+	\verb|\usetheme[hass]{strath}|
 \end{frame}
 
-\begin{frame}
-	\frametitle{Business School theme}
+\begin{frame}[fragile]{Business School theme}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\tcbincludegraphics[width=\textwidth]{sbs1.png}
@@ -93,14 +89,12 @@
 			\tcbincludegraphics[width=\textwidth]{sbs2.png}
 		\end{column}
 	\end{columns}
-	\vspace{1cm}
+	\vspace{0.6cm}
 	\centering
-	\texttt{\textbackslash{}usetheme[sbs]\{strath\}}
+	\verb|\usetheme[sbs]{strath}|
 \end{frame}
 
-\begin{frame}
-	\frametitle{Frame title}
-	\framesubtitle{Frames can have subtitles}
+\begin{frame}{Frame title}{Frames can have subtitles}
 	\begin{block}{Block}
 		Something in a regular block
 	\end{block}
@@ -112,54 +106,95 @@
 	\end{alertblock}
 \end{frame}
 
-\begin{frame}
-	\frametitle{\texttt{\textbackslash{}fillgraphics} command}
-	\fillgraphics[0.47]{strath.png}
+\begin{frame}{Aspect ratios}{Branding side bar is removed for narrow aspect ratios}
 	\begin{columns}
-		\begin{column}{0.47\textwidth}
-		\end{column}
-		\begin{column}{0.47\textwidth}
-			\begin{block}{}\scriptsize
-				\texttt{\textbackslash{}fillgraphics} is a helper command to insert an image in the background and make it fill a portion of the frame, stretching and clipping it to preserve the aspect ratio
+		\begin{column}{0.5\textwidth}
+			\begin{block}{4:3 aspect ratio}
+				\centering
+				\includegraphics[height=3cm]{ar43.png}
 			\end{block}
-			\begin{block}{}\scriptsize
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{block}{16:9 aspect ratio}
+				\centering
+				\includegraphics[height=3cm]{ar169.png}
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{\textbackslash{}ifratio} command}
+	\begin{block}{}
+		Helper command for changing layout based on aspect ratio
+	\end{block}
+	\begin{exampleblock}{Example}
+		\begin{lstlisting}[language=TeX, gobble=3, tabsize=1]
+			\ifratio{43}{
+			  % Code for 4:3 ratio
+			}{
+			  % Code for any other ratio
+			}
+		\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{\textbackslash{}fillgraphics} command}
+	\fillgraphics[0.33]{strath.png}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+		\end{column}
+		\begin{column}{0.65\textwidth}
+			\begin{block}{}
+				Helper command to stretch and clip an image in the background to make it fill a portion of the frame
+			\end{block}
+			\begin{block}{}
 				First option specifies width relative to viewport (defaults to 1 for full width)
 			\end{block}
-			\begin{exampleblock}{Code}\tiny
-				\texttt{\textbackslash{}fillgraphics[0.47]\{strath.png\}}
+			\begin{exampleblock}{Code}\small
+				\verb|\fillgraphics[0.33]{strath.png}|
 			\end{exampleblock}
 		\end{column}
 	\end{columns}
 \end{frame}
 
-\begin{nofootlineframe}
-	\frametitle{\texttt{\textbackslash{}fillgraphics} command}
+\begin{frame}[fragile]{\texttt{\textbackslash{}fillgraphics} command}
 	\fillgraphics[0.25][1]{strath.png}
 	\begin{columns}
 		\begin{column}{0.72\textwidth}
-			\begin{block}{}\scriptsize
-				Second option specifies horizontal position (defaults to 0 for left-aligned)
+			\begin{block}{}
+				Second option specifies horizontal position\\
+				(defaults to 0 for left-aligned)
 			\end{block}
-			\begin{exampleblock}{Code}\scriptsize
-				\texttt{\textbackslash{}fillgraphics[0.25][1]\{strath.png\}}
+			\begin{exampleblock}{Code}
+				\texttt{\textbackslash{}fillgraphics[0.25][1]{strath.png}}
 			\end{exampleblock}
-			\begin{alertblock}{}\scriptsize
-				Use \texttt{\textbackslash{}begin\{nofootlineframe\}} instead of \texttt{\textbackslash{}begin\{frame\}} to remove footline
+			\begin{alertblock}{Reminder}
+				Listings and verbatim environments in beamer require the frame to have the \verb|fragile| option
 			\end{alertblock}
 		\end{column}
 		\begin{column}{0.25\textwidth}
 		\end{column}
 	\end{columns}
-\end{nofootlineframe}
+\end{frame}
 
-\begin{nofootlineframe}
+\begingroup\setbeamertemplate{footline}{}
+\begin{frame}[fragile]
 	\fillgraphics[1][0][0pt]{strath.png}
-	\begin{block}{}\scriptsize
-		Third option specifies top trim amount (defaults to height of frame title banner)
+	\begin{block}{}
+		Third option specifies top trim amount\\
+		(defaults to height of frame title banner)
 	\end{block}
-	\begin{exampleblock}{Code}\scriptsize
-		\texttt{\textbackslash{}fillgraphics[1][0][0pt]\{strath.png\}}
+	\begin{exampleblock}{Code}
+		\verb|\fillgraphics[1][0][0pt]{strath.png}|
 	\end{exampleblock}
-\end{nofootlineframe}
+	\begin{alertblock}{To remove footlines}
+		\begin{lstlisting}[language=TeX, gobble=3, tabsize=1]
+			\begingroup\setbeamertemplate{footline}{}
+			  % Frames without footlines
+			\endgroup
+		\end{lstlisting}
+	\end{alertblock}
+\end{frame}
+\endgroup
 
 \end{document}
