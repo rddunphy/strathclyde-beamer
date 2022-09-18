@@ -40,23 +40,31 @@
 \RequirePackage[letterspace=250]{microtype}
 \RequirePackage{ifthen}
 
+\newif\ifsidebaron
+
 \ifthenelse{\lengthtest{\beamer@paperwidth=16.00cm}\AND\lengthtest{\beamer@paperheight=10.00cm}}{
 	\def\beamer@aspectratio{1610}
+	\sidebarontrue
 }{}
 \ifthenelse{\lengthtest{\beamer@paperwidth=16.00cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
 	\def\beamer@aspectratio{169}
+	\sidebarontrue
 }{}
 \ifthenelse{\lengthtest{\beamer@paperwidth=14.00cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
 	\def\beamer@aspectratio{149}
+	\sidebarontrue
 }{}
 \ifthenelse{\lengthtest{\beamer@paperwidth=12.50cm}\AND\lengthtest{\beamer@paperheight=10.00cm}}{
 	\def\beamer@aspectratio{54}
+	\sidebaronfalse
 }{}
 \ifthenelse{\lengthtest{\beamer@paperwidth=12.80cm}\AND\lengthtest{\beamer@paperheight=9.60cm}}{
 	\def\beamer@aspectratio{43}
+	\sidebaronfalse
 }{}
 \ifthenelse{\lengthtest{\beamer@paperwidth=13.50cm}\AND\lengthtest{\beamer@paperheight=9.00cm}}{
 	\def\beamer@aspectratio{32}
+	\sidebaronfalse
 }{}
 \def\theratio{\beamer@aspectratio}
 

@@ -82,22 +82,22 @@
 		\newlength{\fillgraphicsheight}
 	}{}
 	\ifthenelse{\lengthtest{#3=-1pt}}{
-		\ifratio{43}{
-			\setlength{\fillgraphicsheight}{\dimexpr\paperheight-0.11362\paperwidth}
-		}{
+		\ifsidebaron
 			\setlength{\fillgraphicsheight}{\dimexpr\paperheight-0.094683\paperwidth}
-		}
+		\else
+			\setlength{\fillgraphicsheight}{\dimexpr\paperheight-0.11362\paperwidth}
+		\fi
 	}{
 		\setlength{\fillgraphicsheight}{\dimexpr\paperheight-#3}
 	}
 	\@ifundefined{fillgraphicsmaxwidth}{
 		\newlength{\fillgraphicsmaxwidth}
 	}{}
-	\ifratio{43}{
-		\setlength{\fillgraphicsmaxwidth}{\paperwidth}
-	}{
+	\ifsidebaron
 		\setlength{\fillgraphicsmaxwidth}{\dimexpr\paperwidth-1.2cm-0.45pt}
-	}
+	\else
+		\setlength{\fillgraphicsmaxwidth}{\paperwidth}
+	\fi
 	\@ifundefined{fillgraphicsxspace}{
 		\newlength{\fillgraphicsxspace}
 	}{}
